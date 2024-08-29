@@ -17,7 +17,7 @@ from os.path import join
 
 def generate_launch_description():
 
-    resources_package = 'my_first_robot_freecad'
+    resources_package = 'forklift_freecad'
 
     # Make path to resources dir without last package_name fragment.
     path_to_share_dir_clipped = ''.join(get_package_share_directory(resources_package).rsplit('/' + resources_package, 1))

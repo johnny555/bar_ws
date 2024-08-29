@@ -1,0 +1,10 @@
+moveit_setup_assistant_config:
+  urdf:
+    package: my_robot_arm
+    relative_path: urdf/my_robot_arm.urdf.xacro
+  srdf:
+    relative_path: config/my_robot_arm.srdf
+  package_settings:
+    author_name: John Vial
+    author_email: john@soundelve.com
+    generated_timestamp: 1724734141
