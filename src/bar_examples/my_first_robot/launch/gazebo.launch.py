@@ -36,7 +36,7 @@ def generate_launch_description():
         else:
             os.environ["SDF_PATH"] = gz_sim_resource_path
 
-    cafe_world_uri = join(get_package_share_directory("gamecity"), "worlds", "gamecity.sdf")
+    cafe_world_uri = join(get_package_share_directory("my_first_robot"), "worlds", "warehouse.sdf")
    
 
     # Gazebo Sim.
