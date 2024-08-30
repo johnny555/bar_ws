@@ -1,8 +1,18 @@
 <?xml version='1.0' encoding='utf-8'?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="krytn">
 
+    <xacro:include filename="$(find magni_description)/urdf/inertial.xacro" />
     <xacro:include filename="$(find forklift_freecad)/urdf/FirstRobot.urdf" />
+    <xacro:include filename="$(find sensors)/realsense_d435/realsense.urdf.xacro" />
+    <xacro:include filename="$(find sensors)/lidar_2d/lidar_2d.urdf.xacro" />
 
+    <xacro:realsense world_link_name="base_link">
+        <origin xyz="-0.7 0 2.4" rpy="0 0 ${pi}" />
+    </xacro:realsense>
+
+    <xacro:lidar_2d world_link_name="base_link">
+        <origin xyz="-0.4 0 1.1" rpy="0 0 0" />
+    </xacro:lidar_2d>
 
     <gazebo reference="caster_wheel">
 

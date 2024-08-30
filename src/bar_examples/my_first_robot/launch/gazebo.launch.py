@@ -83,11 +83,16 @@ def generate_launch_description():
     bridge = Node(
         package='ros_gz_bridge',
         executable='parameter_bridge',
-        arguments=['/model/FirstRobot/cmd_vel@geometry_msgs/msg/Twist@gz.msgs.Twist'],
+        arguments=['/model/FirstRobot/cmd_vel@geometry_msgs/msg/Twist@gz.msgs.Twist',
+                   '/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock',
+                   '/lidar@sensor_msgs/msg/LaserScan@gz.msgs.LaserScan',
+                   '/lidar/points@sensor_msgs/msg/PointCloud2[gz.msgs.PointCloudPacked',
+                   '/realsense/image@sensor_msgs/msg/Image[gz.msgs.Image',
+                   '/realsense/depth@sensor_msgs/msg/Image[gz.msgs.Image',
+                   '/realsense/points@sensor_msgs/msg/PointCloud2[gz.msgs.PointCloudPacked',],
         output='screen',
         remappings=[('/model/FirstRobot/cmd_vel','/cmd_vel')]
     )
-
     
     # Step 5: Enable the ros2 controllers
     start_controllers  = Node(
@@ -107,6 +112,17 @@ def generate_launch_description():
     )  
 
 
+    static_pub = Node(package="tf2_ros", 
+                      executable="static_transform_publisher",
+                      arguments=["0","0","0","0","0","0", "lidar_2d_link", "FirstRobot/base_link/lidar_2d_v1", ])
+    
+    static_pub2 = Node(package="tf2_ros", 
+                      executable="static_transform_publisher",
+                      arguments=["0","0","0","0","0","0",  "realsense_link", "FirstRobot/base_link/realsense_d435"])
+
+
+
+
     return LaunchDescription([
         use_sim_time_launch_arg,
         robot_state_publisher,
@@ -115,5 +131,7 @@ def generate_launch_description():
         rqt_robot_steering,
         bridge,
         start_controllers,
-        twist_stamper
+        twist_stamper,
+        static_pub,
+        static_pub2
     ])
