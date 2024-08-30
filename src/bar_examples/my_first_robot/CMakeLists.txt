@@ -27,5 +27,10 @@ install(DIRECTORY launch robot_description config worlds
   DESTINATION share/${PROJECT_NAME}
 )
 
+install(PROGRAMS
+   my_first_robot/move_tines.py
+   my_first_robot/pick_pallet.py
+   DESTINATION lib/${PROJECT_NAME}
+)
 
 ament_package()

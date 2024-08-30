@@ -70,14 +70,14 @@
       <uri>
 https://fuel.gazebosim.org/1.0/MovAi/models/pallet
       </uri>
-      <pose>2.14 0 0 0 0 0</pose>
+      <pose>3.14 0 0 0 0 0</pose>
     </include>
 
     <include>
       <uri>
     https://fuel.gazebosim.org/1.0/OpenRobotics/models/Large Crate
       </uri>
-      <pose>2.14 0 0.5 0 0 0</pose>
+      <pose>3.14 0 0.5 0 0 0</pose>
     </include>
 
     <include>

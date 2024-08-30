@@ -98,7 +98,7 @@ def generate_launch_description():
     start_controllers  = Node(
                 package="controller_manager",
                 executable="spawner",
-                arguments=['joint_state_broadcaster', 'diff_drive_base_controller'],
+                arguments=['joint_state_broadcaster', 'diff_drive_base_controller', 'tines_controller'],
                 output="screen",
             )
 
@@ -114,13 +114,13 @@ def generate_launch_description():
 
     static_pub = Node(package="tf2_ros", 
                       executable="static_transform_publisher",
-                      arguments=["0","0","0","0","0","0", "lidar_2d_link", "FirstRobot/base_link/lidar_2d_v1", ])
+                      arguments=["0","0","0","0","0","0", "lidar_2d_link", "FirstRobot/base_footprint/lidar_2d_v1", ])
     
     static_pub2 = Node(package="tf2_ros", 
                       executable="static_transform_publisher",
-                      arguments=["0","0","0","0","0","0",  "realsense_link", "FirstRobot/base_link/realsense_d435"])
+                      arguments=["0","0","0","0","0","0",  "realsense_link", "FirstRobot/base_footprint/realsense_d435"])
 
-
+ 
 
 
     return LaunchDescription([

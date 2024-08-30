@@ -6,6 +6,14 @@
     <xacro:include filename="$(find sensors)/realsense_d435/realsense.urdf.xacro" />
     <xacro:include filename="$(find sensors)/lidar_2d/lidar_2d.urdf.xacro" />
 
+    <link name="base_footprint" />
+
+    <joint name="base_footprint_joint" type="fixed">
+        <parent link="base_footprint" />
+        <child link="base_link" />
+        <origin rpy="0 0 ${pi}" />
+    </joint>
+
     <xacro:realsense world_link_name="base_link">
         <origin xyz="-0.7 0 2.4" rpy="0 0 ${pi}" />
     </xacro:realsense>
@@ -15,7 +23,6 @@
     </xacro:lidar_2d>
 
     <gazebo reference="caster_wheel">
-
         <collision>
             <surface>
                 <friction>
@@ -122,7 +129,7 @@
         </joint>
 
         <joint name="tines_joint">
-            <command_interface name="velocity">
+            <command_interface name="position">
                 <param name="min">-10</param>
                 <param name="max">10</param>
             </command_interface>
