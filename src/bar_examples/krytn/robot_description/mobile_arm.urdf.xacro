@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='utf-8'?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="mobile_arm" encoding='UTF-8'>
+
+  <!-- Import and add robot components -->
+  <xacro:include filename="$(find magni_description)/urdf/magni.urdf.xacro" />
+  <xacro:include filename="$(find sensors)/realsense_d435/realsense.urdf.xacro" />
+  <xacro:include filename="$(find sensors)/lidar_2d/lidar_2d.urdf.xacro" />
+
+
+
+  <xacro:lidar_2d world_link_name="base_link">
+    <origin xyz="0 0 0.15" rpy="0 0 0" />
+  </xacro:lidar_2d>
+
+  <xacro:include filename="$(find ur_description)/urdf/ur_macro.xacro" />
+  <xacro:arg name="ur_type" default="ur5e"/>
+
+  <xacro:ur_robot name="ur5" tf_prefix="ur5_" parent="base_link" joint_limits_parameters_file="$(find ur_description)/config/$(arg ur_type)/joint_limits.yaml" kinematics_parameters_file="$(find ur_description)/config/$(arg ur_type)/default_kinematics.yaml" physical_parameters_file="$(find ur_description)/config/$(arg ur_type)/physical_parameters.yaml" visual_parameters_file="$(find ur_description)/config/$(arg ur_type)/visual_parameters.yaml">
+    <origin xyz="-0.4 0 0.25" rpy="0 0 0" />
+  </xacro:ur_robot>
+
+  <xacro:macro name="ros2_position_controller" params="joint_name">
+    <joint name="${joint_name}">
+      <command_interface name="position"/>
+      <state_interface name="position">
+        <param name="initial_value">0.0</param>
+      </state_interface>
+      <state_interface name="velocity"/>
+    </joint>
+  </xacro:macro>
+
+  <!-- Configure Control of Joints -->
+  <ros2_control name="Krytn" type="system">
+
+    <hardware>
+      <plugin>gz_ros2_control/GazeboSimSystem</plugin>
+    </hardware>
+
+    <joint name="left_wheel_joint">
+      <command_interface name="velocity">
+        <param name="min">-10</param>
+        <param name="max">10</param>
+      </command_interface>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+      <state_interface name="effort" />
+    </joint>
+
+    <joint name="right_wheel_joint">
+      <command_interface name="velocity">
+        <param name="min">-10</param>
+        <param name="max">10</param>
+      </command_interface>
+
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+      <state_interface name="effort" />
+    </joint>
+
+    <xacro:ros2_position_controller joint_name="ur5_shoulder_pan_joint" />
+    <xacro:ros2_position_controller joint_name="ur5_shoulder_lift_joint" />
+    <xacro:ros2_position_controller joint_name="ur5_elbow_joint" />
+    <xacro:ros2_position_controller joint_name="ur5_wrist_1_joint" />
+    <xacro:ros2_position_controller joint_name="ur5_wrist_2_joint" />
+    <xacro:ros2_position_controller joint_name="ur5_wrist_3_joint" />
+
+  </ros2_control>
+
+  <!-- Setup Gazebo plugins -->
+  <gazebo>
+    <plugin filename="gz_ros2_control-system" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
+      <ros>
+        <remapping>/diff_drive_base_controller/odom:=odom</remapping>
+        <remapping>/diff_drive_base_controller/tf_odometry:=tf</remapping>
+      </ros>
+      <parameters>$(find krytn)/config/ros2_control.yaml</parameters>
+    </plugin>
+
+    <plugin filename="gz-sim-sensors-system" name="gz::sim::systems::Sensors">
+      <render_engine>ogre2</render_engine>
+    </plugin>
+  </gazebo>
+
+</robot>

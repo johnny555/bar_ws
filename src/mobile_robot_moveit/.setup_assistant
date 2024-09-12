@@ -1,0 +1,25 @@
+moveit_setup_assistant_config:
+  urdf:
+    package: krytn
+    relative_path: robot_description/mobile_arm.urdf.xacro
+  srdf:
+    relative_path: config/mobile_arm.srdf
+  package_settings:
+    author_name: john vial
+    author_email: john@soundelve.com
+    generated_timestamp: 1726127555
+  control_xacro:
+    command:
+      - position
+    state:
+      - position
+      - velocity
+  modified_urdf:
+    xacros:
+      - control_xacro
+  control_xacro:
+    command:
+      - position
+    state:
+      - position
+      - velocity
