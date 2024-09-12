@@ -1,7 +1,7 @@
 version: '3'
 services:
   bar-desktop-full:
-    image: johnny555/bar:v4
+    image: johnny555/bar-multiarch:latest
     user: ubuntu
     volumes:
       - ../:/workspace:cached
