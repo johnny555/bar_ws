@@ -16,11 +16,15 @@ find_package(ament_cmake_auto REQUIRED)
 ament_auto_find_build_dependencies()
 
 install(PROGRAMS
-   krytn/app.py 
-   krytn/krytn_web.py 
+   krytn/app.py
    krytn/move_krytn_action.py
    krytn/move_krytn_topic.py
    DESTINATION lib/${PROJECT_NAME}
+)
+
+install(DIRECTORY
+   krytn/static/
+   DESTINATION lib/${PROJECT_NAME}/static
 )
 
 ament_auto_package(

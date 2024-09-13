@@ -1,6 +1,6 @@
 {
     "name": "Become a Roboticist",
-    "image": "johnny555/bar-amd64:v1",
+    "image": "johnny555/bar-amd-arm:v1",
     "remoteUser": "ubuntu",
     "overrideCommand": false,
     "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
