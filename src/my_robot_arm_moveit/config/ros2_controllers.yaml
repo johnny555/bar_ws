@@ -24,16 +24,18 @@ arm_controller:
       - ur5_wrist_2_joint
       - ur5_wrist_3_joint
     command_interfaces:
-      []
+      - position
     state_interfaces:
-      []
+      - position
+      - velocity
     allow_nonzero_velocity_at_trajectory_end: true
 gripper_controller:
   ros__parameters:
     joints:
       - finger_joint
     command_interfaces:
-      []
+      - position
     state_interfaces:
-      []
+      - position
+      - velocity
     allow_nonzero_velocity_at_trajectory_end: true

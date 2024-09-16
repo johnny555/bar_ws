@@ -14,10 +14,6 @@
     </xacro:ur_robot>
     <link name="world" />
 
-    <xacro:realsense world_link_name="world">
-        <origin xyz="0 2.00 2.2" rpy="0 ${pi/4} -${pi/2}" />
-    </xacro:realsense>
-
 
     <link name="base_link">
         <visual>
@@ -140,5 +136,11 @@
         </plugin>
     </gazebo>
 
+
+    <!--
+    <xacro:realsense world_link_name="world" prefix="close_up_">
+        <origin xyz="-0.5 -0.5 -0.5" rpy="0 0 ${pi/4}" />
+    </xacro:realsense>
+    -->
 
 </robot>

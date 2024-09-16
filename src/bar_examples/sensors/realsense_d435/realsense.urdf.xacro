@@ -1,8 +1,8 @@
 <robot name="sensor_d435"
     xmlns:xacro="http://ros.org/wiki/xacro">
 
-    <xacro:macro name="realsense" params="world_link_name *origin">
-        <link name="realsense_link">
+    <xacro:macro name="realsense" params="world_link_name prefix:='' *origin">
+        <link name="${prefix}realsense_link">
             <xacro:box_inertial x="0.02" y="0.1" z="0.01" mass="0.06"/>
 
 
@@ -40,12 +40,12 @@
             </visual>
         </link>
 
-        <gazebo reference="realsense_link">
-            <sensor name="realsense_d435" type="rgbd_camera">
+        <gazebo reference="${prefix}realsense_link">
+            <sensor name="${prefix}realsense_d435" type="rgbd_camera">
                 <update_rate>10</update_rate>
-                <topic>realsense</topic>
+                <topic>${prefix}realsense</topic>
                 <camera name="camera">
-                    <optical_frame_id>realsense</optical_frame_id>
+                    <optical_frame_id>${prefix}realsense</optical_frame_id>
 
                     <horizontal_fov>1.0472</horizontal_fov>
 
@@ -62,8 +62,8 @@
             </sensor>
         </gazebo>
 
-        <joint name="realsense_joint" type="fixed">
-            <child link="realsense_link" />
+        <joint name="${prefix}realsense_joint" type="fixed">
+            <child link="${prefix}realsense_link" />
             <parent link="${world_link_name}" />
             <xacro:insert_block name="origin"/>
         </joint>
