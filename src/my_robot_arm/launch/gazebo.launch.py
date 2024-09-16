@@ -108,9 +108,9 @@ def generate_launch_description():
                       ],
         output='screen'        )
     
-    #static_pub = Node(package="tf2_ros", 
-    #                  executable="static_transform_publisher",
-    #                  arguments=["0","0","0","0","0","0",  "realsense_link", "realsense/realsense_link/realsense_d435"])
+    static_pub = Node(package="tf2_ros", 
+                      executable="static_transform_publisher",
+                      arguments=["0","0","0","0","0","0",  "realsense_link", "realsense/realsense_link/realsense_d435"])
 
     static_pub2 = Node(package="tf2_ros", 
                       executable="static_transform_publisher",
