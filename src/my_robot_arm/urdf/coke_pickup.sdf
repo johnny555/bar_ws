@@ -105,61 +105,7 @@
       <static>false</static>
       <self_collide>false</self_collide>
     </model>
-    <model name="realsense">
-      <static>true</static>
-      <link name='realsense_link'>
-        <inertial>
-          <pose>-0.14999999999999999 0 0.029999999999999999 0 0 0</pose>
-          <mass>0.059999999999999998</mass>
-          <inertia>
-            <ixx>5.0499979800000003e-05</ixx>
-            <ixy>0</ixy>
-            <ixz>0</ixz>
-            <iyy>2.499999e-06</iyy>
-            <iyz>0</iyz>
-            <izz>5.1999979200000003e-05</izz>
-          </inertia>
-        </inertial>
-        <collision name='realsense_link_fixed_joint_lump__collision_collision'>
-          <pose>0 0 0 0 0 1.5707963267948959</pose>
-          <geometry>
-            <mesh>
-              <scale>1 1 1</scale>
-              <uri>model://sensors/realsense_d435/meshes/realsense.dae</uri>
-            </mesh>
-          </geometry>
-        </collision>
-        <visual name='realsense_link_fixed_joint_lump__visual_visual'>
-          <pose>0 0 0 0 0 1.5707963267948959</pose>
-          <geometry>
-            <mesh>
-              <scale>1 1 1</scale>
-              <uri>model://sensors/realsense_d435/meshes/realsense.dae</uri>
-            </mesh>
-          </geometry>
-        </visual>
-        <sensor name='realsense_d435' type='rgbd_camera'>
-          <update_rate>10</update_rate>
-          <topic>realsense</topic>
-          <camera name='camera'>
-            <optical_frame_id>realsense</optical_frame_id>
-            <horizontal_fov>1.0471999999999999</horizontal_fov>
-            <image>
-              <width>640</width>
-              <height>480</height>
-              <format>R8G8B8</format>
-            </image>
-            <clip>
-              <near>0.01</near>
-              <far>300</far>
-            </clip>
-          </camera>
-        </sensor>
-      </link>
 
-
-      <pose>0 1.90 1.7 0 0.7853981633974483 -1.5707963267948966</pose>
-    </model>
     <model name='Coke'>
       <static>false</static>
       <link name='body'>

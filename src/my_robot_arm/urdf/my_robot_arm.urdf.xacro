@@ -5,6 +5,10 @@
     <xacro:include filename="$(find sensors)/realsense_d435/realsense.urdf.xacro" />
 
 
+    <xacro:realsense world_link_name="ur5_base">
+        <origin xyz="0 0.2 -0.6" rpy="0 -${pi/2} -${pi/2}" />
+    </xacro:realsense>
+
     <!-- Include a UR5 -->
     <xacro:include filename="$(find ur_description)/urdf/ur_macro.xacro" />
     <xacro:arg name="ur_type" default="ur5e"/>

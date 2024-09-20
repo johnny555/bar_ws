@@ -102,19 +102,15 @@ def generate_launch_description():
         executable='parameter_bridge',
         arguments=['/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock',
                    '/realsense/image@sensor_msgs/msg/Image[gz.msgs.Image',
-                   '/realsense/depth_image@sensor_msgs/msg/Image[gz.msgs.Image',
+                   '/realsense/depth_image@sensor_msgs/msg/Image@gz.msgs.Image',
                    '/realsense/points@sensor_msgs/msg/PointCloud2[gz.msgs.PointCloudPacked',
                     '/realsense/camera_info@sensor_msgs/msg/CameraInfo[gz.msgs.CameraInfo',
                       ],
-        output='screen'        )
+        output='screen')
     
     static_pub = Node(package="tf2_ros", 
                       executable="static_transform_publisher",
-                      arguments=["0","0","0","0","0","0",  "realsense_link", "realsense/realsense_link/realsense_d435"])
-
-    static_pub2 = Node(package="tf2_ros", 
-                      executable="static_transform_publisher",
-                      arguments=["0","0","0","0","0","0",  "close_up_realsense_link", "my_robot_arm.urdf/close_up_realsense_link/close_up_realsense_d435"])
+                      arguments=["0","0","0","0","0","0",  "realsense_link", "my_robot_arm.urdf/ur5_base_link/realsense_d435"])
 
 
     return LaunchDescription([
@@ -129,6 +125,5 @@ def generate_launch_description():
         mg_sim_time,
         bridge,
         static_pub,
-        #static_pub2
         #rviz_sim_time
     ])

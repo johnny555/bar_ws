@@ -9,7 +9,7 @@
             <collision name="collision">
                 <origin rpy="0 0 ${pi/2}"/>
                 <geometry>
-                    <mesh filename="package://sensors/realsense_d435/meshes/realsense.dae" />
+                    <box size="0.2 0.2 0.2" />
                 </geometry>
             </collision>
             <visual name= "visual">
@@ -42,7 +42,7 @@
 
         <gazebo reference="${prefix}realsense_link">
             <sensor name="${prefix}realsense_d435" type="rgbd_camera">
-                <update_rate>10</update_rate>
+                <update_rate>2</update_rate>
                 <topic>${prefix}realsense</topic>
                 <camera name="camera">
                     <optical_frame_id>${prefix}realsense</optical_frame_id>
@@ -56,7 +56,7 @@
                     </image>
                     <clip>
                         <near>0.01</near>
-                        <far>300</far>
+                        <far>5</far>
                     </clip>
                 </camera>
             </sensor>

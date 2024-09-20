@@ -96,7 +96,7 @@ def generate_launch_description():
     
     static_pub2 = Node(package="tf2_ros", 
                       executable="static_transform_publisher",
-                      arguments=["0","0","0","0","0","0",  "realsense_link", "krytn/base_footprint/realsense_d435"])
+                      arguments=["0","0","0","0","0","0",  "realsense_link", "world"])
 
 
 
