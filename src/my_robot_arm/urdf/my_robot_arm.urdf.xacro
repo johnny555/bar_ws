@@ -6,7 +6,7 @@
 
 
     <xacro:realsense world_link_name="ur5_base">
-        <origin xyz="0 0.2 -0.6" rpy="0 -${pi/2} -${pi/2}" />
+        <origin xyz="0 0.0 0.6" rpy="${pi} 0 ${3*pi/4}" />
     </xacro:realsense>
 
     <!-- Include a UR5 -->
@@ -62,7 +62,7 @@
         <child link="finger_link"/>
         <origin rpy="0.0 -0.0 0.0" xyz="-0.06 0.001 0.06"/>
         <axis xyz="1 0 0"/>
-        <limit effort="1000.0" lower="-0.1" upper="0.078" velocity="1000.1"/>
+        <limit effort="1000.0" lower="-0.01" upper="0.078" velocity="1000.1"/>
     </joint>
 
     <joint name="gripper_joint" type="fixed">
