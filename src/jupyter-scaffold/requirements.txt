@@ -2,4 +2,3 @@ setuptools
 numpy<2.0.0
 opencv-python
 py-cylinder-fitting
-segment-anything-py
