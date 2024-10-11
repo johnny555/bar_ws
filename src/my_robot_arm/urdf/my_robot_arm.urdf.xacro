@@ -133,6 +133,7 @@
     <gazebo>
         <plugin filename="gz_ros2_control-system" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
             <parameters>$(find my_robot_arm)/config/ros2_control.yaml</parameters>
+            <hold_joints>False</hold_joints>
         </plugin>
 
         <plugin filename="gz-sim-sensors-system" name="gz::sim::systems::Sensors">
