@@ -46,6 +46,7 @@ jobs:
               },
               "test": {
                 "packages-select": ["krytn"],
-                "event-handlers": ["console_cohesion+"]
+                "event-handlers": ["console_cohesion+"],
+                "merge-install": true
               }
             }
