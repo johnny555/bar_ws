@@ -27,6 +27,11 @@ jobs:
           rosdep update
           rosdep install --from-paths src --ignore-src -r -y
 
+      - name: Configure Environment
+        run: |
+          echo "GZ_SIM_RESOURCE_PATH=/opt/ros/jazzy/share/:/home/runner/work/bar_ws/bar_ws/ros_ws/install/share/" >> $GITHUB_ENV
+          echo "SDF_PATH=/opt/ros/jazzy/share/:/home/runner/work/bar_ws/bar_ws/ros_ws/install/share/" >> $GITHUB_ENV
+
       - uses: ros-tooling/action-ros-ci@0.3.15
         with:
           target-ros2-distro: jazzy
@@ -35,7 +40,9 @@ jobs:
           colcon-defaults: |
             {
               "build": {
-                "cmake-args": ["-DBUILD_TESTING=ON"]
+                "cmake-args": ["-DBUILD_TESTING=ON"],
+                "symlink-install": true,
+                "merge-install": true
               },
               "test": {
                 "packages-select": ["krytn"],
