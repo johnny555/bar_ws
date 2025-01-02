@@ -18,7 +18,7 @@ jobs:
         with:
           required-ros-distributions: jazzy
 
-      - uses: ros-tooling/action-ros-ci@0.3.5
+      - uses: ros-tooling/action-ros-ci@0.3.15
         with:
           target-ros2-distro: jazzy
           package-name: krytn
