@@ -1,17 +1,43 @@
-name: Check Build Is Ok
+name: Build Test
+
 on: push
 
 jobs:
-  humble_source:
-    runs-on: ubuntu-22.04
+  jazzy_build:
+    runs-on: ubuntu-latest
     steps:
-      - uses: ros-tooling/setup-ros@v0.7
+      - uses: actions/checkout@v4
+
+      - uses: ros-tooling/setup-ros@0.7.7
         with:
-          required-ros-distributions: humble
-      - uses: ros-tooling/action-ros-ci@v0.3
+          required-ros-distributions: jazzy
+
+      - name: Install Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            ros-jazzy-launch-param-builder \
+            ros-jazzy-ros-gz \
+            ros-jazzy-gz-sim \
+            python3-rosdep
+          sudo rosdep init || true
+          rosdep update
+          rosdep install --from-paths src --ignore-src -r -y
+
+      - name: Configure Environment
+        run: |
+          echo "GZ_SIM_RESOURCE_PATH=/opt/ros/jazzy/share/" >> $GITHUB_ENV
+          echo "SDF_PATH=/opt/ros/jazzy/share/" >> $GITHUB_ENV
+
+      - uses: ros-tooling/action-ros-ci@0.3.15
         with:
+          target-ros2-distro: jazzy
           package-name: krytn
-          ref: humble
-          target-ros2-distro: humble
-          vcs-repo-file-url: https://raw.githubusercontent.com/johnny555/4robots_ws/humble/src/workspace.repos
-          import-token: ${{ secrets.GITHUB_TOKEN }}
+          colcon-defaults: |
+            {
+              "build": {
+                "cmake-args": ["-DBUILD_TESTING=ON"],
+                "symlink-install": true,
+                "merge-install": true
+              }
+            }
