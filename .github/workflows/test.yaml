@@ -2,9 +2,8 @@ name: ROS2 Tests
 
 on:
   push:
-    branches: [main]
   pull_request:
-    branches: [main]
+    branches: [jazzy]
 
 jobs:
   test:
