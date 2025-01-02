@@ -1,0 +1,36 @@
+name: ROS2 Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: ros-tooling/setup-ros@0.7.1
+        with:
+          required-ros-distributions: jazzy
+
+      - uses: ros-tooling/action-ros-ci@0.3.5
+        with:
+          target-ros2-distro: jazzy
+          package-name: krytn
+          vcs-repo-file-url: ""
+          colcon-defaults: |
+            {
+              "build": {
+                "cmake-args": ["-DBUILD_TESTING=ON"]
+              },
+              "test": {
+                "packages-select": ["krytn"],
+                "event-handlers": ["console_cohesion+"]
+              }
+            }
