@@ -22,10 +22,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y \
-            ros-jazzy-launch-param-builder \
-            ros-jazzy-ros-gz \
-            ros-jazzy-gz-sim \
-            python3-rosdep
+            ros-jazzy-launch-param-builder 
           sudo rosdep init || true
           rosdep update
           rosdep install --from-paths src --ignore-src -r -y
