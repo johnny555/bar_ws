@@ -17,8 +17,6 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y \
             ros-jazzy-launch-param-builder \
-            ros-jazzy-ros-gz \
-            ros-jazzy-gz-sim \
             python3-rosdep
           sudo rosdep init || true
           rosdep update
