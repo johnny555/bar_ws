@@ -45,7 +45,7 @@
                 <update_rate>10</update_rate>
                 <topic>realsense</topic>
                 <camera name="camera">
-                    <optical_frame_id>realsense</optical_frame_id>
+                    <optical_frame_id>realsense_link</optical_frame_id>
 
                     <horizontal_fov>1.0472</horizontal_fov>
 
