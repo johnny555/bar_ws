@@ -94,13 +94,7 @@ def generate_launch_description():
                       executable="static_transform_publisher",
                       arguments=["0","0","0","0","0","0", "lidar_2d_link", "krytn/base_footprint/lidar_2d_v1", ])
     
-    static_pub2 = Node(package="tf2_ros", 
-                      executable="static_transform_publisher",
-                      arguments=["0","0","0","0","0","0",  "realsense_link", "krytn/base_footprint/realsense_d435"])
-
-
-
   
     return LaunchDescription([gazebo_sim, bridge, robot, twist_stamper,
                               robot_steering, robot_state_publisher,
-                              start_controllers, static_pub, static_pub2])
+                              start_controllers, static_pub])

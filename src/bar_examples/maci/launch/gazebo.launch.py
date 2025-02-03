@@ -28,14 +28,9 @@ def generate_launch_description():
                    '/realsense/depth@sensor_msgs/msg/Image[gz.msgs.Image',
                    '/realsense/points@sensor_msgs/msg/PointCloud2[gz.msgs.PointCloudPacked', ],
         output='screen'        )
-    
-    static_pub = Node(package="tf2_ros", 
-                      executable="static_transform_publisher",
-                      arguments=["0","0","0","0","0","0",  "realsense_link", "maci/realsense_link/realsense_d435"])
-    
 
     maci = IncludeLaunchDescription(join(get_package_share_directory("maci"), "launch","spawn_maci.launch.py"))
     moveit = IncludeLaunchDescription(join(get_package_share_directory("maci"), "launch","moveit.launch.py"))
 
 
-    return LaunchDescription([gazebo_sim, bridge, maci, moveit, static_pub ])
+    return LaunchDescription([gazebo_sim, bridge, maci, moveit ])
